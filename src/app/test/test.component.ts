@@ -23,6 +23,11 @@ import { Component } from '@angular/core'
         <h2 [style.color]="hasError ? 'red' : 'green'">Style Binding</h2>
         <h2 [style.color]="highlightColor">Style binding 2</h2>
         <h2 [ngStyle]="titleStyles">Style binding 3</h2>
+        <!-- The $event gives you all the information about the element on which it was raised -->
+        <button (click)="onClick($event)">This is a button</button>
+        <h3>{{ greeting }}</h3>
+        <button (click)="greeting='Welcome sir'">This is another button</button>
+        <h3>{{ greeting }}</h3>
     `,
     styles:[`
         .text-success {
@@ -39,6 +44,7 @@ import { Component } from '@angular/core'
 
 export class TestComponent {
     public successClass = "text-success"
+    public greeting = ""
     public hasError = true
     public isSpecial = true
     public messageClasses = {
@@ -61,5 +67,10 @@ export class TestComponent {
 
     greetUser() {
         return "Hello " + this.name
+    }
+
+    onClick(event: any) {
+        console.log(event)
+        this.greeting = event.type
     }
 }
