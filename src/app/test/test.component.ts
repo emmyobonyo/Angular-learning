@@ -28,6 +28,29 @@ import { Component } from '@angular/core'
         <h3>{{ greeting }}</h3>
         <button (click)="greeting='Welcome sir'">This is another button</button>
         <h3>{{ greeting }}</h3>
+        <!-- Input elements -->
+        <input #myInput type="text">
+        <button (click)="logMessage(myInput)">Log</button>
+        <!-- Two way binding: Update the value of a property and at the sametime display the value of the property -->
+        <input [(ngModel)]="newName" type="text">
+        {{ newName }}
+        <!-- Structural Directives -->
+        <!-- ngIf takes a boolean value -->
+        <h2 *ngIf="displayName; else elseBlock">
+            Codevolution
+        </h2>
+        <ng-template #elseBlock>
+            <h2>
+                Name is hidden
+            </h2>
+        </ng-template>
+        <ng-template #thenBlock>
+            <h2>Codevolution</h2>
+        </ng-template>
+        <ng-template #elseyBlock>
+            <h2>HireJuniorDevelopers</h2>
+        </ng-template>
+        <h2 *ngIf="displayName; then thenBlock; else elseyBlock"></h2>
     `,
     styles:[`
         .text-success {
@@ -43,6 +66,8 @@ import { Component } from '@angular/core'
 })
 
 export class TestComponent {
+    public displayName = false
+    public newName = ''
     public successClass = "text-success"
     public greeting = ""
     public hasError = true
@@ -72,5 +97,9 @@ export class TestComponent {
     onClick(event: any) {
         console.log(event)
         this.greeting = event.type
+    }
+
+    logMessage(value: any) {
+        console.log(value)
     }
 }
