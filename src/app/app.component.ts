@@ -10,4 +10,8 @@ import { Component } from '@angular/core';
     }
   `]
 })
-export class AppComponent {}
+export class AppComponent {
+  title = 'app'
+  public name = 'Emmanuel'
+  public message = ''
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
 
 @Component({
     selector: 'app-test',
@@ -51,6 +51,20 @@ import { Component } from '@angular/core'
             <h2>HireJuniorDevelopers</h2>
         </ng-template>
         <h2 *ngIf="displayName; then thenBlock; else elseyBlock"></h2>
+        <!-- ngSwicth -->
+        <div [ngSwitch]="color">
+            <div *ngSwitchCase="'red'">You picked the color red</div>
+            <div *ngSwitchCase="'blue'">You picked the color blue</div>
+            <div *ngSwitchCase="'green'">You picked the color red</div>
+            <div *ngSwitchDefault>Pick again</div>
+        </div>
+        <!-- ngFor -->
+        <div *ngFor="let color of colors; index as i">
+            <h2>{{ i }} {{ color }}</h2>
+        </div> 
+        <!-- Component Interation -->
+        <h2>{{ "Hello " + parentData }}</h2>
+        <button (click)="fireEvent()">Send Events</button>
     `,
     styles:[`
         .text-success {
@@ -66,6 +80,14 @@ import { Component } from '@angular/core'
 })
 
 export class TestComponent {
+    // Get data from the parent data
+    // @Input('parentData') public name:any; <---- giving it a unique name
+    @Input() public parentData: any
+    // Send data to a parent component
+    @Output() public childEvent = new EventEmitter()
+
+    public colors = ["red", "blue", "green", "yellow"]
+    public color = 'red'
     public displayName = false
     public newName = ''
     public successClass = "text-success"
@@ -101,5 +123,8 @@ export class TestComponent {
 
     logMessage(value: any) {
         console.log(value)
+    }
+    fireEvent(){
+        this.childEvent.emit('Hey Codevolution')
     }
 }
