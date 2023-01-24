@@ -17,6 +17,12 @@ import { Component } from '@angular/core'
         <h2 [class.text-danger]="hasError">No Snooze</h2>
         <!-- Conditionally apply mutiple classes -->
         <h2 [ngClass]="messageClasses">Conditionally apply multiple classes</h2>
+        <!-- This is an example of style binding -->
+        <h2 [style.color]="'orange'">Style Binding</h2>
+        <!-- Style binding with conditinals -->
+        <h2 [style.color]="hasError ? 'red' : 'green'">Style Binding</h2>
+        <h2 [style.color]="highlightColor">Style binding 2</h2>
+        <h2 [ngStyle]="titleStyles">Style binding 3</h2>
     `,
     styles:[`
         .text-success {
@@ -40,6 +46,11 @@ export class TestComponent {
         "text-danger": this.hasError,
         "text-special": this.isSpecial
     }
+    public titleStyles = {
+        color: "blue",
+        fontStyle: "italic"
+    }
+    public highlightColor = 'orange'
     public name = "WH Namulonge"
     public myId = "testId"
     public isDisabled = true
