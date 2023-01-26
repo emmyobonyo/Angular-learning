@@ -20,6 +20,5 @@ export class EmployeeListComponent {
   public employees:any = []
   constructor(private _employeeService: EmployeeService) {
     this.employees = this._employeeService.getEmployees()
-    console.log(this.employees)
   }
 }
