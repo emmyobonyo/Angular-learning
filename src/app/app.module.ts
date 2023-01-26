@@ -15,12 +15,14 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { TestComponent } from './test/test.component';
+import { EmployeeListComponent } from './employee-list/employee-list.components';
+import { EmployeeService } from './employee.service';
 // import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, ServerComponent, ServersComponent, SuccessAlertComponent, WarningAlertComponent, HeaderComponent, RecipesComponent, RecipeListComponent, RecipeDetailComponent, RecipeItemComponent, ShoppingListComponent, ShoppingEditComponent, TestComponent],
+  declarations: [AppComponent, ServerComponent, ServersComponent, SuccessAlertComponent, WarningAlertComponent, HeaderComponent, RecipesComponent, RecipeListComponent, RecipeDetailComponent, RecipeItemComponent, ShoppingListComponent, ShoppingEditComponent, TestComponent, EmployeeListComponent],
   imports: [BrowserModule, FormsModule],
-  providers: [],
+  providers: [EmployeeService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -64,7 +64,33 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
         </div> 
         <!-- Component Interation -->
         <h2>{{ "Hello " + parentData }}</h2>
+        <!-- Sending data to a parent component requires adding an element that will fire the function-->
         <button (click)="fireEvent()">Send Events</button>
+        <!-- The pipe operator -->
+        <h2>{{ name }}</h2>
+        <h2>{{ name | lowercase }}</h2>
+        <h2>{{ name | uppercase }}</h2>
+        <h2>{{ name | titlecase }}</h2>
+        <h2>{{ name | slice: 3 }}</h2>
+        <h2>{{ name | slice: 3:5 }}</h2>
+
+        <h2>{{ 5.678 | number: '1.2-3' }}</h2>
+        <h2>{{ 5.678 | number: '3.3-4' }}</h2>
+        <h2>{{ 5.678 | number: '3.1-2' }}</h2>
+
+        <h2>{{ 0.25 | percent }}</h2>
+
+        <h2>{{ 0.25 | currency }}</h2>
+        <h2>{{ 0.25 | currency: 'GBP': 'code' }}</h2>
+
+        <h2>{{ date | date: 'short'}}</h2>
+        <h2>{{ date | date: 'shortDate'}}</h2>
+        <h2>{{ date | date: 'shortTime'}}</h2>
+        <!-- ngFor -->
+        <h2>Employee List</h2>
+        <ul *ngFor="let employee of employees">
+            <li>{{ employee.id }}. {{ employee.name }} - {{ employee.age }}</li>
+        </ul>
     `,
     styles:[`
         .text-success {
@@ -80,6 +106,19 @@ import { Component, EventEmitter, Input, Output } from '@angular/core'
 })
 
 export class TestComponent {
+    public employees = [
+        {"id": 1, "name": "Andrew", "age": 30},
+        {"id": 2, "name": "Brandon", "age": 31},
+        {"id": 3, "name": "Christina", "age": 31},
+        {"id": 4, "name": "Elema", "age": 32}
+    ]
+
+    public person = {
+        "firstname": "John",
+        "lastname": "Doe"
+    }
+
+    public date = new Date
     // Get data from the parent data
     // @Input('parentData') public name:any; <---- giving it a unique name
     @Input() public parentData: any
